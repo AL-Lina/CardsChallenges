@@ -7,8 +7,6 @@
 
 import SpriteKit
 import GameplayKit
-import CoreImage
-import CoreImage.CIFilterBuiltins
 
 class GameScene: SKScene {
     
