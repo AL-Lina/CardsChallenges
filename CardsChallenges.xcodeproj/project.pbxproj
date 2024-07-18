@@ -19,6 +19,7 @@
 		62DA78C42C47161E00355119 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA78C32C47161E00355119 /* Constants.swift */; };
 		62DA78C92C4716B200355119 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DA78C82C4716B200355119 /* AVFoundation.framework */; };
 		62DA78D32C4822AA00355119 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = 62DA78D22C4822AA00355119 /* sounds */; };
+		62DA78E72C49BB4300355119 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA78E62C49BB4300355119 /* GameOverScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		62DA78C32C47161E00355119 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		62DA78C82C4716B200355119 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		62DA78D22C4822AA00355119 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
+		62DA78E62C49BB4300355119 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				62DA78B92C47159900355119 /* LaunchScreen.storyboard */,
 				62DA78C12C4715F900355119 /* GamingScene.swift */,
 				62DA78C32C47161E00355119 /* Constants.swift */,
+				62DA78E62C49BB4300355119 /* GameOverScene.swift */,
 			);
 			path = CardsChallenges;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				62DA78C22C4715FA00355119 /* GamingScene.swift in Sources */,
 				62DA78B32C47159700355119 /* GameViewController.swift in Sources */,
 				62DA78AB2C47159700355119 /* AppDelegate.swift in Sources */,
+				62DA78E72C49BB4300355119 /* GameOverScene.swift in Sources */,
 				62DA78C42C47161E00355119 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

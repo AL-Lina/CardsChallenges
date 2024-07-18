@@ -8,8 +8,6 @@
 import SpriteKit
 import GameplayKit
 
-
-
 class GamingScene: SKScene {
     
     var sceneManagerDelegate: SceneManagerDelegate?
@@ -48,6 +46,7 @@ class GamingScene: SKScene {
     var soundActionButton: SKAction!
     var soundActionMatch: SKAction!
     var soundActionNoMatch: SKAction!
+    var soundActionWin: SKAction!
     
     var counter: Int = 0
     var counterTimer = Timer()
@@ -55,13 +54,16 @@ class GamingScene: SKScene {
     
     var counterMatches: Int = 0
     var bgParallax: SKSpriteNode!
+    var darkenLayer: SKSpriteNode!
+    
+    var gameOverLabel: SKLabelNode!
     
     override func didMove(to view: SKView) {
-        setupAudio()
         setUpScenery()
         fillCardSequence()
         createCarBoard()
         createScoreBoard()
+        setupAudio()
         startCounter()
     }
     
@@ -166,8 +168,8 @@ class GamingScene: SKScene {
         print("selectedCardIndex1 \(selectedCardIndex1)")
         print("selectedCardIndex2 \(selectedCardIndex2)")
         
-        let card1 :SKSpriteNode = cards[selectedCardIndex1] as SKSpriteNode
-        let card2 :SKSpriteNode = cards[selectedCardIndex2] as SKSpriteNode
+        let card1: SKSpriteNode = cards[selectedCardIndex1] as SKSpriteNode
+        let card2: SKSpriteNode = cards[selectedCardIndex2] as SKSpriteNode
         
         card1.run(SKAction.unhide())
         card2.run(SKAction.unhide())
@@ -218,13 +220,15 @@ class GamingScene: SKScene {
         soundActionButton = SKAction.playSoundFileNamed(soundButton, waitForCompletion: false)
         soundActionMatch = SKAction.playSoundFileNamed(matchButton, waitForCompletion: false)
         soundActionNoMatch = SKAction.playSoundFileNamed(noMatchSound, waitForCompletion: false)
+        soundActionWin = SKAction.playSoundFileNamed(winButtonSound, waitForCompletion: false)
     }
     
-    func createBlur() {
-        let  blur = CIFilter(name:"CIGaussianBlur",parameters: ["inputRadius": 10.0])
-                self.filter = blur
-                self.shouldRasterize = true
-                self.shouldEnableEffects = true
+    func goToGameOverScene(labelForMovies: SKLabelNode, labelForTime: SKLabelNode) {
+        let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+                  let scene = GameOverScene(size: self.size)
+        scene.text = labelForMovies.text
+        scene.textForTime = labelForTime.text
+                  self.view?.presentScene(scene, transition: reveal)
     }
     
     
@@ -256,11 +260,12 @@ class GamingScene: SKScene {
                                         if selectedCardValue == selectedCard2Value {
                                             print("we have a match")
                                                counterMatches += 1
-                                             if counterMatches == 10 {
-                                                    createBlur()
-                                                        }
                                             tryCountCurrent += 1
                                             tryCountCurrentLabel.text = "MOVIES: \(tryCountCurrent)"
+                                            if counterMatches == 1 {
+                                                run(soundActionWin)
+                                               goToGameOverScene(labelForMovies: tryCountCurrentLabel, labelForTime: countdownLabel)
+                                                       }
                                             Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(hideSelectedCards), userInfo: nil, repeats: false)
                                             run(soundActionMatch)
                                             //                                            setStatusCardFound(cardIndex: selectedCardIndex1)
