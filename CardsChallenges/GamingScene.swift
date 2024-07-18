@@ -262,7 +262,7 @@ class GamingScene: SKScene {
                                                counterMatches += 1
                                             tryCountCurrent += 1
                                             tryCountCurrentLabel.text = "MOVIES: \(tryCountCurrent)"
-                                            if counterMatches == 1 {
+                                            if counterMatches == 10 {
                                                 run(soundActionWin)
                                                goToGameOverScene(labelForMovies: tryCountCurrentLabel, labelForTime: countdownLabel)
                                                        }
