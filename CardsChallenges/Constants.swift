@@ -25,3 +25,5 @@ let soundButton = "button.wav"
 let matchButton = "match.mp3"
 let noMatchSound = "no-match.wav"
 let winButtonSound = "win.mp3"
+
+let replayGame = "Undo"

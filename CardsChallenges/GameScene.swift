@@ -21,7 +21,7 @@ class GameScene: SKScene {
     var soundActionButton: SKAction!
     
     override func didMove(to view: SKView) {
-       
+        
         setUpScenery()
         createMenu()
         setupAudio()
@@ -47,9 +47,6 @@ class GameScene: SKScene {
         }
     }
     
-    
-        
-   
     func setUpScenery() {
         let background = SKSpriteNode(imageNamed: backgroundImage)
         background.anchorPoint = CGPointMake(0, 1)

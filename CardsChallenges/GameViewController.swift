@@ -38,19 +38,18 @@ class GameViewController: UIViewController {
 }
 
 extension GameViewController: SceneManagerDelegate, SFSafariViewControllerDelegate {
+    
     func presentMenuScene() {
         let menuScene = GameScene()
         menuScene.sceneManagerDelegate = self
         present(scene: menuScene, width: .resizeFill)
     }
     
-    
     func presentGamingScene() {
         let gamingScene = GamingScene()
         gamingScene.sceneManagerDelegate = self
         present(scene: gamingScene, width: .resizeFill)
     }
-    
     
     func presentSafariController() {
         let urlString = "https://www.google.com"
