@@ -80,7 +80,7 @@ class GamingScene: SKScene {
         var minutesText = minutes < 10 ? "0\(minutes)" : "\(minutes)"
         var secondText = seconds < 10 ? "0\(seconds)" : "\(seconds)"
         
-        countdownLabel.text = "TIME:\(minutesText):\(secondText)"
+        countdownLabel.text = "TIME: \(minutesText):\(secondText)"
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -225,10 +225,10 @@ class GamingScene: SKScene {
     
     func goToGameOverScene(labelForMovies: SKLabelNode, labelForTime: SKLabelNode) {
         let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-                  let scene = GameOverScene(size: self.size)
+        let scene = GameOverScene(size: self.size)
         scene.text = labelForMovies.text
         scene.textForTime = labelForTime.text
-                  self.view?.presentScene(scene, transition: reveal)
+        self.view?.presentScene(scene, transition: reveal)
     }
     
     
@@ -259,13 +259,13 @@ class GamingScene: SKScene {
                                         cardBack.run(SKAction.hide())
                                         if selectedCardValue == selectedCard2Value {
                                             print("we have a match")
-                                               counterMatches += 1
+                                            counterMatches += 1
                                             tryCountCurrent += 1
                                             tryCountCurrentLabel.text = "MOVIES: \(tryCountCurrent)"
                                             if counterMatches == 10 {
                                                 run(soundActionWin)
-                                               goToGameOverScene(labelForMovies: tryCountCurrentLabel, labelForTime: countdownLabel)
-                                                       }
+                                                goToGameOverScene(labelForMovies: tryCountCurrentLabel, labelForTime: countdownLabel)
+                                            }
                                             Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(hideSelectedCards), userInfo: nil, repeats: false)
                                             run(soundActionMatch)
                                             //                                            setStatusCardFound(cardIndex: selectedCardIndex1)
