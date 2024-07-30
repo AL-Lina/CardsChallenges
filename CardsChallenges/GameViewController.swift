@@ -12,7 +12,6 @@ import SafariServices
 
 protocol SceneManagerDelegate {
     func presentMenuScene()
-    func presentGamingScene()
     func presentSafariController()
 }
 
@@ -43,12 +42,6 @@ extension GameViewController: SceneManagerDelegate, SFSafariViewControllerDelega
         let menuScene = GameScene()
         menuScene.sceneManagerDelegate = self
         present(scene: menuScene, width: .resizeFill)
-    }
-    
-    func presentGamingScene() {
-        let gamingScene = GamingScene()
-        gamingScene.sceneManagerDelegate = self
-        present(scene: gamingScene, width: .resizeFill)
     }
     
     func presentSafariController() {
