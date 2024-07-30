@@ -15,8 +15,11 @@ let privacyPoliceButton = "Play button-2"
 let backgroundParallax = "BG_3 Parallax"
 let secondBackgroung = "BG_2"
 let scoreBoardImage = "Play button-3"
+let undoImage = "Undo"
+let leftImage = "Left"
+let menuImage = "Menu"
 
-let fontName = "ChalkboardSE-Regular" // find fonts at iosfonts.com
+let fontName = "ChalkboardSE-Regular"
 
 let youWinImage = "You win"
 let firstFrame = "Frame 1"

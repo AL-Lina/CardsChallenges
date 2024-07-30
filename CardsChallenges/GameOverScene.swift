@@ -7,6 +7,7 @@
 
 import UIKit
 import SpriteKit
+import AudioToolbox
 
 class GameOverScene: SKScene {
     
@@ -18,6 +19,9 @@ class GameOverScene: SKScene {
     var container: SKSpriteNode!
     var youWinForResults: SKSpriteNode!
     var replayGameButton: SKSpriteNode!
+    var menuButton: SKSpriteNode!
+    
+    var soundActionButton: SKAction!
     
     var text: String?
     var textForTime: String?
@@ -26,6 +30,7 @@ class GameOverScene: SKScene {
     override func didMove(to view: SKView) {
         setUpScreen()
         setUpScenery()
+        setUpAudio()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -39,7 +44,20 @@ class GameOverScene: SKScene {
                 scene.scaleMode = .aspectFill
                 self.view?.presentScene(scene, transition: reveal)
             }
+            
+            if node.name == "menu" {
+                run(soundActionButton)
+                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+                let reveal: SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
+                let scene = GameScene(size: self.view!.bounds.size)
+                scene.scaleMode = .aspectFill
+                self.view?.presentScene(scene, transition: reveal)
+            }
         }
+    }
+    
+    func setUpAudio() {
+        soundActionButton = SKAction.playSoundFileNamed(soundButton, waitForCompletion: false)
     }
     
     func setUpScenery() {
@@ -98,11 +116,18 @@ class GameOverScene: SKScene {
         addChild(youWinForResults)
         
         replayGameButton = SKSpriteNode(imageNamed: replayGame)
-        replayGameButton.position = CGPointMake(self.size.width/2, self.size.height / 2 - 160)
+        replayGameButton.position = CGPointMake(self.size.width/2 - 30, self.size.height / 2 - 160)
         replayGameButton.size = CGSize(width: 50, height: 50)
         replayGameButton.zPosition = 20
         replayGameButton.name = "replay"
         addChild(replayGameButton)
+        
+        menuButton = SKSpriteNode(imageNamed: menuImage)
+        menuButton.position = CGPointMake(self.size.width/2 + 30, self.size.height / 2 - 160)
+        menuButton.size = CGSize(width: 50, height: 50)
+        menuButton.zPosition = 20
+        menuButton.name = "menu"
+        addChild(menuButton)
     }
 }
 
