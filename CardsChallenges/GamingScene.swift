@@ -7,6 +7,7 @@
 
 import SpriteKit
 import GameplayKit
+import AudioToolbox
 
 class GamingScene: SKScene {
     
@@ -39,6 +40,8 @@ class GamingScene: SKScene {
     var youWinImg: SKSpriteNode!
     var frameForResults: SKSpriteNode!
     var parallax: SKSpriteNode!
+    var undoButton: SKSpriteNode!
+    var leftButton: SKSpriteNode!
     
     var tryCountCurrent: Int = 0
     var tryCountCurrentLabel: SKLabelNode!
@@ -65,6 +68,7 @@ class GamingScene: SKScene {
         createScoreBoard()
         setupAudio()
         startCounter()
+        createButtons()
     }
     
     func startCounter() {
@@ -89,6 +93,16 @@ class GamingScene: SKScene {
         let touchedNode: SKSpriteNode = self.atPoint(positionInScene) as! SKSpriteNode
         
         self.processItemTouch(node: touchedNode)
+        
+        if touchedNode.name == "resetGame" {
+            resetGame()
+        }
+        if touchedNode.name == "goBack" {
+            let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
+            let scene = GameScene(size: self.view!.bounds.size)
+            scene.scaleMode = .aspectFill
+            self.view?.presentScene(scene, transition: reveal)
+        }
     }
     
     func setUpScenery() {
@@ -209,11 +223,56 @@ class GamingScene: SKScene {
         addChild(tryCountCurrentLabel)
         
         countdownLabel = SKLabelNode(fontNamed: fontName)
+        countdownLabel.text = "TIME: 00:00"
         countdownLabel.fontSize = 20
         countdownLabel.fontColor = SKColor.white
         countdownLabel.zPosition = 11
         countdownLabel.position = CGPointMake(scoreBoard.position.x + 100, scoreBoard.position.y - 5)
         addChild(countdownLabel)
+    }
+    
+    func createButtons() {
+        undoButton = SKSpriteNode(imageNamed: undoImage)
+        undoButton.position = CGPointMake(size.width / 2 + 150, size.height / 2 - 300)
+        undoButton.size = CGSize(width: 50, height: 50)
+        undoButton.zPosition = 1
+        undoButton.name = "resetGame"
+        addChild(undoButton)
+        
+        leftButton = SKSpriteNode(imageNamed: leftImage)
+        leftButton.position = CGPointMake(size.width / 2, size.height / 2 - 300)
+        leftButton.size = CGSize(width: 50, height: 50)
+        leftButton.zPosition = 1
+        leftButton.name = "goBack"
+        addChild(leftButton)
+    }
+    
+    func resetGame() {
+        removeAllCards()
+        fillCardSequence()
+        createCarBoard()
+        tryCountCurrent = 0
+        tryCountCurrentLabel?.text = "MOVIES: \(tryCountCurrent)"
+        counter = 0
+    }
+    
+    func removeAllCards() {
+        for card in cards {
+            card.removeFromParent()
+        }
+        
+        for card in cardsBacks {
+            card.removeFromParent()
+        }
+        cards.removeAll(keepingCapacity: false)
+        cardsBacks.removeAll(keepingCapacity: false)
+        cardsStatus.removeAll(keepingCapacity: false)
+        cardSequence.removeAll(keepingCapacity: false)
+        
+        selectedCardValue = ""
+        selectedCard2Value = ""
+        selectedCardIndex1 = -1
+        selectedCardIndex2 = -1
     }
     
     func setupAudio() {
@@ -263,18 +322,19 @@ class GamingScene: SKScene {
                                             tryCountCurrent += 1
                                             tryCountCurrentLabel.text = "MOVIES: \(tryCountCurrent)"
                                             if counterMatches == 10 {
+                                                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
                                                 run(soundActionWin)
                                                 goToGameOverScene(labelForMovies: tryCountCurrentLabel, labelForTime: countdownLabel)
                                             }
                                             Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(hideSelectedCards), userInfo: nil, repeats: false)
+                                            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
                                             run(soundActionMatch)
-                                            //                                            setStatusCardFound(cardIndex: selectedCardIndex1)
-                                            //                                            setStatusCardFound(cardIndex: selectedCardIndex2)
                                         } else {
                                             print("no match")
                                             tryCountCurrent += 1
                                             tryCountCurrentLabel.text = "MOVIES: \(tryCountCurrent)"
                                             Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(resetSelectedCards), userInfo: nil, repeats: false)
+                                            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
                                             run(soundActionNoMatch)
                                         }
                                         
