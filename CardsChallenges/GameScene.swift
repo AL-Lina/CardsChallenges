@@ -7,6 +7,7 @@
 
 import SpriteKit
 import GameplayKit
+import AudioToolbox
 
 class GameScene: SKScene {
     
@@ -18,13 +19,13 @@ class GameScene: SKScene {
     var privacyPolButton: SKSpriteNode!
     var touchednODE: SKSpriteNode!
     
-    var soundActionButton: SKAction!
+    var matchSound = SKAction()
     
     override func didMove(to view: SKView) {
         
         setUpScenery()
         createMenu()
-        setupAudio()
+        setUpAudio()
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -32,17 +33,20 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             
             if playButton.contains(location) {
+                run(matchSound)
                 print("play")
-                sceneManagerDelegate?.presentGamingScene()
-                setupAudio()
-                run(soundActionButton)
+                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+                let reveal: SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
+                let scene = GamingScene(size: self.view!.bounds.size)
+                scene.scaleMode = .aspectFill
+                self.view?.presentScene(scene, transition: reveal)
             }
             
             if privacyPolButton.contains(location) {
+                run(matchSound)
                 print("privacy")
+                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
                 sceneManagerDelegate?.presentSafariController()
-                setupAudio()
-                run(soundActionButton)
             }
         }
     }
@@ -56,8 +60,8 @@ class GameScene: SKScene {
         addChild(background)
     }
     
-    func setupAudio() {
-        soundActionButton = SKAction.playSoundFileNamed(soundButton, waitForCompletion: false)
+    func setUpAudio() {
+        matchSound = SKAction.playSoundFileNamed(soundButton, waitForCompletion: false)
     }
     
     func createMenu() {

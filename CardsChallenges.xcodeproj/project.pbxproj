@@ -17,13 +17,12 @@
 		62DA78BB2C47159900355119 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62DA78B92C47159900355119 /* LaunchScreen.storyboard */; };
 		62DA78C22C4715FA00355119 /* GamingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA78C12C4715F900355119 /* GamingScene.swift */; };
 		62DA78C42C47161E00355119 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA78C32C47161E00355119 /* Constants.swift */; };
-		62DA78C92C4716B200355119 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DA78C82C4716B200355119 /* AVFoundation.framework */; };
 		62DA78D32C4822AA00355119 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = 62DA78D22C4822AA00355119 /* sounds */; };
 		62DA78E72C49BB4300355119 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA78E62C49BB4300355119 /* GameOverScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		62DA78A72C47159700355119 /* CardsChallenges.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardsChallenges.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		62DA78A72C47159700355119 /* CardsChallenges.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CardsChallenges.app; path = "/Users/alinasakovskaya/Documents/CardsChallenges/build/Debug-iphoneos/CardsChallenges.app"; sourceTree = "<absolute>"; };
 		62DA78AA2C47159700355119 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62DA78AC2C47159700355119 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		62DA78AE2C47159700355119 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -34,7 +33,6 @@
 		62DA78BA2C47159900355119 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		62DA78C12C4715F900355119 /* GamingScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamingScene.swift; sourceTree = "<group>"; };
 		62DA78C32C47161E00355119 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		62DA78C82C4716B200355119 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		62DA78D22C4822AA00355119 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
 		62DA78E62C49BB4300355119 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -44,7 +42,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62DA78C92C4716B200355119 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,23 +52,12 @@
 			isa = PBXGroup;
 			children = (
 				62DA78A92C47159700355119 /* CardsChallenges */,
-				62DA78A82C47159700355119 /* Products */,
-				62DA78C72C4716B200355119 /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		62DA78A82C47159700355119 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				62DA78A72C47159700355119 /* CardsChallenges.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		62DA78A92C47159700355119 /* CardsChallenges */ = {
 			isa = PBXGroup;
 			children = (
-				62DA78DB2C483E3F00355119 /* New Group */,
 				62DA78AA2C47159700355119 /* AppDelegate.swift */,
 				62DA78AC2C47159700355119 /* GameScene.sks */,
 				62DA78D22C4822AA00355119 /* sounds */,
@@ -86,21 +72,6 @@
 				62DA78E62C49BB4300355119 /* GameOverScene.swift */,
 			);
 			path = CardsChallenges;
-			sourceTree = "<group>";
-		};
-		62DA78C72C4716B200355119 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				62DA78C82C4716B200355119 /* AVFoundation.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		62DA78DB2C483E3F00355119 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,7 +118,7 @@
 				Base,
 			);
 			mainGroup = 62DA789E2C47159700355119;
-			productRefGroup = 62DA78A82C47159700355119 /* Products */;
+			productRefGroup = 62DA789E2C47159700355119;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
