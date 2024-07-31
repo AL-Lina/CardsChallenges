@@ -18,6 +18,7 @@ let scoreBoardImage = "Play button-3"
 let undoImage = "Undo"
 let leftImage = "Left"
 let menuImage = "Menu"
+let pauseImage = "Pause"
 
 let fontName = "ChalkboardSE-Regular"
 

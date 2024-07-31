@@ -42,6 +42,7 @@ class GamingScene: SKScene {
     var parallax: SKSpriteNode!
     var undoButton: SKSpriteNode!
     var leftButton: SKSpriteNode!
+    var pauseButton: SKSpriteNode!
     
     var tryCountCurrent: Int = 0
     var tryCountCurrentLabel: SKLabelNode!
@@ -60,6 +61,8 @@ class GamingScene: SKScene {
     var darkenLayer: SKSpriteNode!
     
     var gameOverLabel: SKLabelNode!
+    
+    var pauseTapped = false
     
     override func didMove(to view: SKView) {
         setUpScenery()
@@ -102,6 +105,10 @@ class GamingScene: SKScene {
             let scene = GameScene(size: self.view!.bounds.size)
             scene.scaleMode = .aspectFill
             self.view?.presentScene(scene, transition: reveal)
+        }
+        
+        if touchedNode.name == "pause" {
+            pauseGame()
         }
     }
     
@@ -245,6 +252,25 @@ class GamingScene: SKScene {
         leftButton.zPosition = 1
         leftButton.name = "goBack"
         addChild(leftButton)
+        
+        pauseButton = SKSpriteNode(imageNamed: pauseImage)
+        pauseButton.position = CGPointMake(size.width / 2 - 150, size.height / 2 - 300)
+        pauseButton.size = CGSize(width: 50, height: 50)
+        pauseButton.zPosition = 1
+        pauseButton.name = "pause"
+        addChild(pauseButton)
+    }
+    
+    func pauseGame() {
+        if pauseTapped == false {
+            self.scene?.view?.isPaused = true
+            counterTimer.invalidate()
+            pauseTapped = true
+        } else {
+            self.scene?.view?.isPaused = false
+            startCounter()
+            pauseTapped = false
+        }
     }
     
     func resetGame() {
